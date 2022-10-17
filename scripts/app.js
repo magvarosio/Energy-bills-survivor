@@ -21,7 +21,7 @@ function init() {
 
   // * character variables
 
-  const startingPosition = 0
+  const startingPosition = cellCount - (width / 2)
   let currentPosition = startingPosition
 
 
@@ -61,8 +61,7 @@ function init() {
     console.log(event.keyCode)
 
     const key = event.keyCode
-    const up = 38
-    const down = 40
+
     const left = 37
     const right = 39
 
@@ -75,15 +74,7 @@ function init() {
     } else if (key === left && currentPosition % width !== 0) {
       console.log('LEFT')
       currentPosition--
-    } else if (key === up && currentPosition >= width) {
-      console.log('UP')
-      currentPosition -= width
-    } else if (key === down && currentPosition < cellCount - width) {
-      console.log('DOWN')
-      currentPosition += width
     }
-
-
 
     console.log('remainder from currentPosition % width', currentPosition % width)
 
