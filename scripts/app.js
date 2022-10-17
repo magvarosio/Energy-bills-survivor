@@ -9,42 +9,49 @@ function init() {
   // console.log(grid)
 
 
-  // * grid variables
+  // ************= GRID VARIABLES =**************
 
   const width = 10
   const heigth = 10
   const cellCount = width * heigth
   const cells = []
+  const invadersArray = [2, 3, 4, 5]
 
 
 
 
-  // * character variables
+  // ***********= PLAYER VARIABLES =***********
 
   const startingPosition = cellCount - (width / 2)
   let currentPosition = startingPosition
 
 
+  // ***********= INVADERS VARIABLES =***********
 
-  //* Invaders variables
+  const startingPositionInvaders = cellCount / 2
+  let currentPositionInvaders = startingPositionInvaders
+
 
 
   function createGrid() {
     //for loop 
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // console.log(cell)
       cell.dataset.index = i
       grid.appendChild(cell)
       cells.push(cell)
     }
 
     addPlayer(startingPosition)
+    addInvaders()
   }
   createGrid()
 
 
   // ! EXECUTIONS
+
+
+  // ************** PLAYER ********************
 
   // * addPlayer()
   function addPlayer(position) {
@@ -56,6 +63,7 @@ function init() {
     cells[position].classList.remove('player')
   }
 
+
   // * movePlayer
   function movePlayer(event) {
     console.log(event.keyCode)
@@ -66,7 +74,8 @@ function init() {
     const right = 39
 
     removePlayer(currentPosition)
-    console.log(`current position -> ${currentPosition}`) //current position value check
+    // console.log(`current position Player -> ${currentPosition}`) //current position value check
+
 
     if (key === right && currentPosition % width !== width - 1) {
       console.log('RIGHT')
@@ -81,15 +90,68 @@ function init() {
     addPlayer(currentPosition)
   }
 
-
-
-
   // * Character Shooter function 
+
+
+
+  // ***************** INVADERS *********************  
+
   // * Add Invaders function
+
+
+  function addInvaders() {
+    for (let i = 0; i < invadersArray.length; i++) {
+      cells[invadersArray[i]].classList.add('invader')
+      console.log(invadersArray[i])
+
+    }
+  }
+
+
+  // saved the invaders in a invadersArray (addInvaders)
+  // console.log(invadersArray)
+
+
   // * Remove Invaders function
-  // * Moving Invaders function
-  // * Game Over function
+
+  function removeInvaders() {
+    for (let i = 0; i < invadersArray.length; i++) {
+      cells[invadersArray[i]].classList.remove('invader')
+    }
+  }
+
+  // check remove
+
+  // * Moving Invaders function !!!!!!!
+
+
+  function moveInvaders() {
+    removeInvaders()
+    for (let i = 0; i < invadersArray.length; i++) {
+      invadersArray[i]++
+
+    }
+
+    console.log(invadersArray)
+    addInvaders()
+
+  }
+
+
+  moveInvaders()
+  moveInvaders()
+  moveInvaders()
+  moveInvaders()
+
+
+
+
+
+
+  // ************** END GAME AND CHECK ***************
+
   // * Check if win function
+  // * End game function
 
 
   // ! EVENTS

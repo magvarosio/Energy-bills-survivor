@@ -111,8 +111,20 @@ span#score {
   width: 10%;
 }
 
+/* *************= PLAYER =************ */
+
 .grid div.player {
   background-image: url('../assets/shooter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+/* *************= INVADERS =************ */
+
+
+.grid div.invader {
+  background-image: url('../assets/invaders.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
