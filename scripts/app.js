@@ -8,6 +8,10 @@ function init() {
   const grid = document.querySelector('.grid')
   // console.log(grid)
 
+  // ************= VARIABLES =**************
+
+  let timer
+
 
   // ************= GRID VARIABLES =**************
 
@@ -23,7 +27,7 @@ function init() {
   // ***********= PLAYER VARIABLES =***********
 
   const startingPosition = cellCount - (width / 2)
-  let currentPosition = startingPosition
+  let currentPosition = startingPosition // currentPosition of the player
 
 
   // ***********= INVADERS VARIABLES =***********
@@ -63,17 +67,23 @@ function init() {
     cells[position].classList.remove('player')
   }
 
+  // function addPlayerAfterLaser(position) {
+  //   cells[position].classList.add('player')
+  // }
+
 
   // * movePlayer
   function movePlayer(event) {
-    console.log(event.keyCode)
+    // console.log(event.keyCode)
 
     const key = event.keyCode
 
     const left = 37
     const right = 39
+    const spaceBar = 32
 
     removePlayer(currentPosition)
+
     // console.log(`current position Player -> ${currentPosition}`) //current position value check
 
 
@@ -83,15 +93,49 @@ function init() {
     } else if (key === left && currentPosition % width !== 0) {
       console.log('LEFT')
       currentPosition--
+    } else if (key === spaceBar) {
+      moveLaser()
+      // addPlayerAfterLaser(currentPosition)
     }
-
-    console.log('remainder from currentPosition % width', currentPosition % width)
+    // console.log('remainder from currentPosition % width', currentPosition % width)
 
     addPlayer(currentPosition)
   }
 
-  // * Character Shooter function 
 
+  // ************** LASER *****************
+
+  function addLaser(position) {
+    cells[position].classList.add('laser')
+    console.log('add laser ', position)
+  }
+
+  function removeLaser(position) {
+    cells[position].classList.remove('laser')
+    console.log('remove laser', position)
+  }
+
+
+  function moveLaser() {
+    console.log("moveLaser function")
+    let positionLaser = currentPosition
+    console.log('position laser ' + positionLaser)
+
+    timer = setInterval(() => {
+
+      if (positionLaser >= 0) {
+        removeLaser(positionLaser)
+        positionLaser -= 10
+        console.log('if statement positionLaser', positionLaser)
+        addLaser(positionLaser)
+      }
+      // } else {
+      //   clearInterval(timer)
+      // }
+    }, 100)
+  }
+
+  moveLaser()
 
 
   // ***************** INVADERS *********************  
@@ -102,14 +146,11 @@ function init() {
   function addInvaders() {
     for (let i = 0; i < invadersArray.length; i++) {
       cells[invadersArray[i]].classList.add('invader')
-      console.log(invadersArray[i])
+      // console.log(invadersArray[i]) // INVADERS ARRAY
 
     }
   }
 
-
-  // saved the invaders in a invadersArray (addInvaders)
-  // console.log(invadersArray)
 
 
   // * Remove Invaders function
@@ -122,28 +163,28 @@ function init() {
 
   // check remove
 
-  // * Moving Invaders function !!!!!!!
-
+  // ***********= MOVING INVADERS FUNCTION =********
 
   function moveInvaders() {
-    removeInvaders()
-    for (let i = 0; i < invadersArray.length; i++) {
-      invadersArray[i]++
+    // if () { deve verificare che vada avanti e indietro (check numeri sulla console like 0 < width < width-1)
+    timer = setInterval(() => {
+      removeInvaders()
+      for (let i = 0; i < invadersArray.length; i++) {
+        invadersArray[i]++
+      }
 
-    }
 
-    console.log(invadersArray)
-    addInvaders()
+      // console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
+      addInvaders()
 
+    }, 1000)
   }
 
 
+  //limite dx e sx 
+  // right && currentPosition % width !== width - 1)
+  // left && currentPosition % width !== 0
   moveInvaders()
-  moveInvaders()
-  moveInvaders()
-  moveInvaders()
-
-
 
 
 
@@ -156,6 +197,7 @@ function init() {
 
   // ! EVENTS
   document.addEventListener('keydown', movePlayer)
+
 
 }
 

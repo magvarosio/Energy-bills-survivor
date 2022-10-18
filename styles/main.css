@@ -129,3 +129,12 @@ span#score {
   background-size: contain;
   cursor: pointer;
 }
+
+/* *************= LASER =************ */
+
+.grid div.laser {
+  background-image: url('../assets/Laser.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
