@@ -138,3 +138,12 @@ span#score {
   background-size: contain;
   cursor: pointer;
 }
+
+/* *************= EXPLOSION =************ */
+
+.grid div.explosion {
+  background-image: url('../assets/explosion.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}

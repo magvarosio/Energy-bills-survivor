@@ -10,10 +10,9 @@ function init() {
 
   // ************= VARIABLES =**************
 
-  let timer
+  let invaderTimer
 
-
-  // ************= GRID VARIABLES =**************
+  // * Grid Variables
 
   const width = 10
   const heigth = 10
@@ -22,21 +21,20 @@ function init() {
   const invadersArray = [2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27]
 
 
-
-
-  // ***********= PLAYER VARIABLES =***********
+  // * Player Variables
 
   const startingPosition = cellCount - (width / 2)
   let currentPosition = startingPosition // currentPosition of the player
-  let positionLaser = 0
 
 
-  // ***********= INVADERS VARIABLES =***********
+  // * Invaders Variables
 
   const startingPositionInvaders = cellCount / 2
   let currentPositionInvaders = startingPositionInvaders
 
 
+
+  // ************ THE GRID ***************
 
   function createGrid() {
     //for loop 
@@ -67,10 +65,6 @@ function init() {
     cells[position].classList.remove('player')
   }
 
-  // function addPlayerAfterLaser(position) {
-  //   cells[position].classList.add('player')
-  // }
-
 
   // * movePlayer
   function movePlayer(event) {
@@ -88,13 +82,14 @@ function init() {
 
 
     if (key === right && currentPosition % width !== width - 1) {
-      console.log('RIGHT')
+      // console.log('RIGHT')
       currentPosition++
     } else if (key === left && currentPosition % width !== 0) {
-      console.log('LEFT')
+      // console.log('LEFT')
       currentPosition--
     } else if (key === spaceBar) {
       moveLaser()
+
     }
     // console.log('remainder from currentPosition % width', currentPosition % width)
 
@@ -106,35 +101,51 @@ function init() {
 
   function addLaser(position) {
     cells[position].classList.add('laser')
-    console.log('add laser ', position)
+    // console.log('add laser ', position)
   }
 
   function removeLaser(position) {
     cells[position].classList.remove('laser')
-    console.log('remove laser', position)
+    // console.log('remove laser', position)
   }
 
 
   function moveLaser() {
-    console.log("moveLaser function")
-    positionLaser = currentPosition
-    console.log('position laser ', positionLaser)
-    console.log('SPARA!')
-    timer = setInterval(() => {
+    // console.log("moveLaser function")
+    let positionLaser = currentPosition
 
-      if (positionLaser >= 0) {
+    // console.log('SPARA!')
+    let timer = setInterval(() => {
+      console.log('position laser ', positionLaser)
+
+
+      if (positionLaser >= width) {
         removeLaser(positionLaser)
         positionLaser -= 10
-        console.log('if statement positionLaser', positionLaser)
 
         addLaser(positionLaser)
+
+        if (cells[positionLaser].classList.contains('invader')) {
+          cells[positionLaser].classList.remove('invader')
+          cells[positionLaser].classList.remove('laser')
+          cells[positionLaser].classList.add('explosion')
+
+
+          // remove explosion
+          setTimeout(() => {
+            cells[positionLaser].classList.remove('explosion')
+          }, 80)
+          clearInterval(timer)
+        }
       } else {
         clearInterval(timer)
       }
+
+
     }, 100)
   }
 
-  moveLaser()
+  // moveLaser()
 
 
   // ***************** INVADERS *********************  
@@ -162,11 +173,11 @@ function init() {
 
 
 
-  // ***********= MOVING INVADERS FUNCTION =********
+  // * Move Invaders function
 
   function moveInvaders() {
     // if () { deve verificare che vada avanti e indietro (check numeri sulla console like 0 < width < width-1)
-    timer = setInterval(() => {
+    invaderTimer = setInterval(() => {
       removeInvaders()
       for (let i = 0; i < invadersArray.length; i++) {
         if (currentPosition % width !== width - 1) {
@@ -192,18 +203,30 @@ function init() {
 
   // quando trova un elemento nella stessa posizione, fai sparire un invader
 
-  if (cells[positionLaser].classList.contains('invader')) {
+  function collision() {
 
-    // remove laser
+    console.log('collision function')
+    if (cells[positionLaser].classList.contains('invader')) {
 
-    console.log("contiene invader")
-    // add explosion
-    // update score
-    // remove explosion (timer) 
+      cells[positionLaser].classList.remove('invader')
+      cells[positionLaser].classList.remove('laser')
+      cells[positionLaser].classList.add('explosion')
 
 
+
+      // remove laser
+
+      console.log("contiene invader")
+      // add explosion
+      // update score
+      // remove explosion (timer) 
+
+
+    }
 
   }
+
+
 
 
 
