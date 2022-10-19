@@ -28,6 +28,7 @@ function init() {
 
   const startingPosition = cellCount - (width / 2)
   let currentPosition = startingPosition // currentPosition of the player
+  let positionLaser = 0
 
 
   // ***********= INVADERS VARIABLES =***********
@@ -116,8 +117,8 @@ function init() {
 
   function moveLaser() {
     console.log("moveLaser function")
-    let positionLaser = currentPosition
-    console.log('position laser ' + positionLaser)
+    positionLaser = currentPosition
+    console.log('position laser ', positionLaser)
     console.log('SPARA!')
     timer = setInterval(() => {
 
@@ -127,11 +128,9 @@ function init() {
         console.log('if statement positionLaser', positionLaser)
 
         addLaser(positionLaser)
+      } else {
+        clearInterval(timer)
       }
-
-      // else {
-      //   clearInterval(timer)
-      // }
     }, 100)
   }
 
@@ -190,20 +189,33 @@ function init() {
 
 
   // **********= COLLISION =*******************
+
   // quando trova un elemento nella stessa posizione, fai sparire un invader
 
-  if (cells)
+  if (cells[positionLaser].classList.contains('invader')) {
+
+    // remove laser
+
+    console.log("contiene invader")
+    // add explosion
+    // update score
+    // remove explosion (timer) 
 
 
 
-    // ************** END GAME AND CHECK ***************
-
-    // * Check if win function
-    // * End game function
+  }
 
 
-    // ! EVENTS
-    document.addEventListener('keydown', movePlayer)
+
+
+  // ************** END GAME AND CHECK ***************
+
+  // * Check if win function
+  // * End game function
+
+
+  // ! EVENTS
+  document.addEventListener('keydown', movePlayer)
 
 
 }
