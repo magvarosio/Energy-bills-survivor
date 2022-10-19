@@ -19,7 +19,7 @@ function init() {
   const heigth = 10
   const cellCount = width * heigth
   const cells = []
-  const invadersArray = [2, 3, 4, 5]
+  const invadersArray = [2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27]
 
 
 
@@ -45,7 +45,6 @@ function init() {
       grid.appendChild(cell)
       cells.push(cell)
     }
-
     addPlayer(startingPosition)
     addInvaders()
   }
@@ -95,7 +94,6 @@ function init() {
       currentPosition--
     } else if (key === spaceBar) {
       moveLaser()
-      // addPlayerAfterLaser(currentPosition)
     }
     // console.log('remainder from currentPosition % width', currentPosition % width)
 
@@ -120,16 +118,18 @@ function init() {
     console.log("moveLaser function")
     let positionLaser = currentPosition
     console.log('position laser ' + positionLaser)
-
+    console.log('SPARA!')
     timer = setInterval(() => {
 
       if (positionLaser >= 0) {
         removeLaser(positionLaser)
         positionLaser -= 10
         console.log('if statement positionLaser', positionLaser)
+
         addLaser(positionLaser)
       }
-      // } else {
+
+      // else {
       //   clearInterval(timer)
       // }
     }, 100)
@@ -161,7 +161,7 @@ function init() {
     }
   }
 
-  // check remove
+
 
   // ***********= MOVING INVADERS FUNCTION =********
 
@@ -170,7 +170,9 @@ function init() {
     timer = setInterval(() => {
       removeInvaders()
       for (let i = 0; i < invadersArray.length; i++) {
-        invadersArray[i]++
+        if (currentPosition % width !== width - 1) {
+          invadersArray[i]++
+        }
       }
 
 
@@ -187,16 +189,21 @@ function init() {
   moveInvaders()
 
 
+  // **********= COLLISION =*******************
+  // quando trova un elemento nella stessa posizione, fai sparire un invader
+
+  if (cells)
 
 
-  // ************** END GAME AND CHECK ***************
 
-  // * Check if win function
-  // * End game function
+    // ************** END GAME AND CHECK ***************
+
+    // * Check if win function
+    // * End game function
 
 
-  // ! EVENTS
-  document.addEventListener('keydown', movePlayer)
+    // ! EVENTS
+    document.addEventListener('keydown', movePlayer)
 
 
 }
