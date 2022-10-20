@@ -8,8 +8,9 @@ function init() {
   const grid = document.querySelector('.grid')
   // console.log(grid)
 
-  // ************= VARIABLES =**************
-  let displayResult
+  // ************= VARIABLES =**********
+  const scoreDisplay = document.querySelector('#score')
+  let score = 0
 
 
   // * Grid Variables
@@ -18,7 +19,7 @@ function init() {
   const heigth = 10
   const cellCount = width * heigth
   const cells = []
-  const invadersArray = [2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27]
+
 
 
   // * Player Variables
@@ -29,6 +30,7 @@ function init() {
 
   // * Invaders Variables
 
+  const invadersArray = [2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27]
   const startingPositionInvaders = cellCount / 2
   let currentPositionInvaders = startingPositionInvaders
   let invaderTimer
@@ -120,7 +122,7 @@ function init() {
 
     // console.log('SPARA!')
     const laserTimer = setInterval(() => {
-      console.log('position laser ', positionLaser)
+      // console.log('position laser ', positionLaser)
 
       if (positionLaser >= width) {
         removeLaser(positionLaser)
@@ -140,7 +142,10 @@ function init() {
 
             const killInvader = invadersArray.indexOf(positionLaser)
             killInvadersArray.push(killInvader)
-            console.log(killInvadersArray)
+            score += 100
+            scoreDisplay.innerHTML = score
+            // console.log(killInvadersArray)
+            console.log(score)
 
 
           }, 80)
@@ -152,7 +157,6 @@ function init() {
     }, 100)
   }
 
-  // moveLaser()
 
 
   // ***************** INVADERS *********************  
@@ -216,27 +220,29 @@ function init() {
       addInvaders()
 
 
+
+      // **** GAME OVER ** 
+
       if (invadersArray.some((invader) => invader >= cells.length - width)) {
-        console.log("Game Over") // add GameOver() function
-        // displayResult.innerHTML = 'GAME OVER'
-        alert("GAME OVER")
+        // scoreDisplay.innerHTML = 'GAME OVER'
+        alert('GAME OVER')
         clearInterval(invaderTimer)
       }
-    }, 1000)
 
+      // **** GAME WON ** 
+
+      if (killInvadersArray.length === invadersArray.length) {
+        // scoreDisplay.innerHTML = 'YOU WIN!'
+        alert(`YOU WON, YOUR SCORE IS ${score}`)
+        clearInterval(invaderTimer)
+      }
+
+    }, 1000)
 
   }
   moveInvaders()
 
 
-
-
-
-
-  // ************** END GAME AND CHECK ***************
-
-  // * Check if win function
-  // * End game function
 
 
   // ! EVENTS
