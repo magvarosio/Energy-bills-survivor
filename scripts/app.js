@@ -176,11 +176,19 @@ function init() {
   // * Move Invaders function
 
   function moveInvaders() {
+
+
     // if () { deve verificare che vada avanti e indietro (check numeri sulla console like 0 < width < width-1)
+
+    // let left = invadersArray.some(invader => invader % width === 0) // return a boolean 
+    // let right = invadersArray.some(invader => invader % width === width - 1)
+
     invaderTimer = setInterval(() => {
       removeInvaders()
       for (let i = 0; i < invadersArray.length; i++) {
-        if (currentPosition % width !== width - 1) {
+        if (invadersArray[i] % width !== 0) {
+          invadersArray[i]--
+        } else {
           invadersArray[i]++
         }
       }
@@ -225,9 +233,6 @@ function init() {
     }
 
   }
-
-
-
 
 
 
