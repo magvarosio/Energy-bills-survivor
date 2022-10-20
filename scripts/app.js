@@ -9,8 +9,8 @@ function init() {
   // console.log(grid)
 
   // ************= VARIABLES =**************
+  let displayResult
 
-  let invaderTimer
 
   // * Grid Variables
 
@@ -31,6 +31,9 @@ function init() {
 
   const startingPositionInvaders = cellCount / 2
   let currentPositionInvaders = startingPositionInvaders
+  let invaderTimer
+  let checkDirection = 1
+  let right = true
 
 
 
@@ -115,9 +118,8 @@ function init() {
     let positionLaser = currentPosition
 
     // console.log('SPARA!')
-    let timer = setInterval(() => {
+    const laserTimer = setInterval(() => {
       console.log('position laser ', positionLaser)
-
 
       if (positionLaser >= width) {
         removeLaser(positionLaser)
@@ -134,14 +136,16 @@ function init() {
           // remove explosion
           setTimeout(() => {
             cells[positionLaser].classList.remove('explosion')
+
+            const killInvader = invadersArray.indexOf(positionLaser)
+            // invader
+
           }, 80)
-          clearInterval(timer)
+          clearInterval(laserTimer)
         }
       } else {
-        clearInterval(timer)
+        clearInterval(laserTimer)
       }
-
-
     }, 100)
   }
 
@@ -177,62 +181,49 @@ function init() {
 
   function moveInvaders() {
 
-
-    // if () { deve verificare che vada avanti e indietro (check numeri sulla console like 0 < width < width-1)
-
-    // let left = invadersArray.some(invader => invader % width === 0) // return a boolean 
-    // let right = invadersArray.some(invader => invader % width === width - 1)
-
     invaderTimer = setInterval(() => {
+      const leftStop = invadersArray[0] % width === 0 // return a boolean 
+      const rightStop = invadersArray[invadersArray.length - 1] % width === width - 1
       removeInvaders()
-      for (let i = 0; i < invadersArray.length; i++) {
-        if (invadersArray[i] % width !== 0) {
-          invadersArray[i]--
-        } else {
-          invadersArray[i]++
+      if (right && rightStop) {
+        for (let i = 0; i < invadersArray.length; i++) {
+          invadersArray[i] += width + 1
+          checkDirection = -1
+          right = false
         }
       }
-
-
-      // console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
+      if (!right && leftStop) {
+        for (let i = 0; i < invadersArray.length; i++) {
+          invadersArray[i] += width - 1
+          checkDirection = 1
+          right = true
+        }
+      }
+      for (let i = 0; i < invadersArray.length; i++) {
+        // if (invadersArray[i] % width !== 0) {
+        invadersArray[i] += checkDirection
+        // }
+      }
+      console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
+      console.log('current position ', currentPosition)
+      console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
 
+
+      if (invadersArray.some((invader) => invader >= cells.length - width)) {
+        console.log("Game Over") // add GameOver() function
+        // displayResult.innerHTML = 'GAME OVER'
+        alert("GAME OVER")
+        clearInterval(invaderTimer)
+      }
     }, 1000)
+
+
   }
-
-
-  //limite dx e sx 
-  // right && currentPosition % width !== width - 1)
-  // left && currentPosition % width !== 0
   moveInvaders()
 
 
-  // **********= COLLISION =*******************
 
-  // quando trova un elemento nella stessa posizione, fai sparire un invader
-
-  function collision() {
-
-    console.log('collision function')
-    if (cells[positionLaser].classList.contains('invader')) {
-
-      cells[positionLaser].classList.remove('invader')
-      cells[positionLaser].classList.remove('laser')
-      cells[positionLaser].classList.add('explosion')
-
-
-
-      // remove laser
-
-      console.log("contiene invader")
-      // add explosion
-      // update score
-      // remove explosion (timer) 
-
-
-    }
-
-  }
 
 
 
