@@ -148,7 +148,7 @@ function init() {
 
             console.log('first one', killInvadersArray)
             score += 100
-            scoreDisplay.innerHTML = score
+            scoreDisplay.innerHTML = score + 100
             // console.log(killInvadersArray)
             console.log(score)
 
@@ -233,11 +233,14 @@ function init() {
         clearInterval(invaderTimer)
         window.location.reload()
       }
-
     }, 1000)
 
   }
+
+
   moveInvaders()
+
+
 
   function gameWon() {
     console.log(killInvadersArray.length, invadersArray.length)
@@ -250,9 +253,10 @@ function init() {
   }
 
 
+
+
   // ! EVENTS
   document.addEventListener('keydown', movePlayer)
-
 
 }
 
