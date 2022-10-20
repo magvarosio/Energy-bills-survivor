@@ -34,6 +34,7 @@ function init() {
   let invaderTimer
   let checkDirection = 1
   let right = true
+  let killInvadersArray = []
 
 
 
@@ -138,7 +139,9 @@ function init() {
             cells[positionLaser].classList.remove('explosion')
 
             const killInvader = invadersArray.indexOf(positionLaser)
-            // invader
+            killInvadersArray.push(killInvader)
+            console.log(killInvadersArray)
+
 
           }, 80)
           clearInterval(laserTimer)
@@ -158,8 +161,11 @@ function init() {
 
 
   function addInvaders() {
+
     for (let i = 0; i < invadersArray.length; i++) {
-      cells[invadersArray[i]].classList.add('invader')
+      if (!killInvadersArray.includes(i)) {
+        cells[invadersArray[i]].classList.add('invader')
+      }
       // console.log(invadersArray[i]) // INVADERS ARRAY
 
     }
@@ -204,9 +210,9 @@ function init() {
         invadersArray[i] += checkDirection
         // }
       }
-      console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
-      console.log('current position ', currentPosition)
-      console.log('current position invaders ', currentPositionInvaders)
+      // console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
+      // console.log('current position ', currentPosition)
+      // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
 
 
