@@ -223,23 +223,15 @@ function init() {
       // console.log('current position ', currentPosition)
       // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
+      gameOver()
 
-      // **** GAME OVER ** 
-
-
-      if (invadersArray.some((invader) => invader >= cells.length - width)) {
-        // scoreDisplay.innerHTML = 'GAME OVER'
-        alert('GAME OVER')
-        clearInterval(invaderTimer)
-        window.location.reload()
-      }
-    }, 1000)
+    }, 800)
 
   }
-
-
   moveInvaders()
 
+
+  // **** GAME WON ** 
 
 
   function gameWon() {
@@ -252,6 +244,17 @@ function init() {
     }
   }
 
+
+  // **** GAME OVER ** 
+
+  function gameOver() {
+    if (invadersArray.some((invader) => invader >= cells.length - width)) {
+      // scoreDisplay.innerHTML = 'GAME OVER'
+      alert('GAME OVER')
+      clearInterval(invaderTimer)
+      window.location.reload()
+    }
+  }
 
 
 
