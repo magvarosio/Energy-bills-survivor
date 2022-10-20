@@ -123,9 +123,10 @@ function init() {
     // console.log('SPARA!')
     const laserTimer = setInterval(() => {
       // console.log('position laser ', positionLaser)
+      removeLaser(positionLaser)
 
-      if (positionLaser >= width) {
-        removeLaser(positionLaser)
+      if (positionLaser - width >= 0) {
+
         positionLaser -= 10
 
         addLaser(positionLaser)
@@ -141,13 +142,17 @@ function init() {
             cells[positionLaser].classList.remove('explosion')
 
             const killInvader = invadersArray.indexOf(positionLaser)
-            killInvadersArray.push(killInvader)
+            if (killInvader !== -1 && !killInvadersArray.includes(killInvader)) {
+              killInvadersArray.push(killInvader)
+            }
+
+            console.log('first one', killInvadersArray)
             score += 100
             scoreDisplay.innerHTML = score
             // console.log(killInvadersArray)
             console.log(score)
 
-
+            gameWon()
           }, 80)
           clearInterval(laserTimer)
         }
@@ -219,22 +224,14 @@ function init() {
       // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
 
-
-
       // **** GAME OVER ** 
+
 
       if (invadersArray.some((invader) => invader >= cells.length - width)) {
         // scoreDisplay.innerHTML = 'GAME OVER'
         alert('GAME OVER')
         clearInterval(invaderTimer)
-      }
-
-      // **** GAME WON ** 
-
-      if (killInvadersArray.length === invadersArray.length) {
-        // scoreDisplay.innerHTML = 'YOU WIN!'
-        alert(`YOU WON, YOUR SCORE IS ${score}`)
-        clearInterval(invaderTimer)
+        window.location.reload()
       }
 
     }, 1000)
@@ -242,7 +239,15 @@ function init() {
   }
   moveInvaders()
 
-
+  function gameWon() {
+    console.log(killInvadersArray.length, invadersArray.length)
+    if (killInvadersArray.length === invadersArray.length) {
+      // scoreDisplay.innerHTML = 'YOU WIN!' // da mettere dopo
+      alert(`YOU WON, YOUR SCORE IS ${score}`)
+      clearInterval(invaderTimer)
+      window.location.reload()
+    }
+  }
 
 
   // ! EVENTS
