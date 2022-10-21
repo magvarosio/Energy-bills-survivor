@@ -1,7 +1,10 @@
 function init() {
 
-  // ! SETUP
-  // ? CREATE THE GRID
+
+
+  // ! ========= SETUP =============
+
+
 
   // * element
 
@@ -13,9 +16,7 @@ function init() {
 
   // ************= VARIABLES =**********
 
-
   let score = 0
-
 
   // * Grid Variables
 
@@ -23,7 +24,6 @@ function init() {
   const heigth = 10
   const cellCount = width * heigth
   const cells = []
-
 
 
   // * Player Variables
@@ -40,8 +40,7 @@ function init() {
   let invaderTimer
   let checkDirection = 1
   let right = true
-  let killInvadersArray = []
-
+  const killInvadersArray = []
 
 
   // ************ THE GRID ***************
@@ -60,7 +59,8 @@ function init() {
   createGrid()
 
 
-  // ! EXECUTIONS
+
+  // ! ======== EXECUTIONS =========
 
 
   // ************** PLAYER ********************
@@ -78,30 +78,21 @@ function init() {
 
   // * movePlayer
   function movePlayer(event) {
-    // console.log(event.keyCode)
 
     const key = event.keyCode
-
     const left = 37
     const right = 39
     const spaceBar = 32
 
     removePlayer(currentPosition)
 
-    // console.log(`current position Player -> ${currentPosition}`) //current position value check
-
-
     if (key === right && currentPosition % width !== width - 1) {
-      // console.log('RIGHT')
       currentPosition++
     } else if (key === left && currentPosition % width !== 0) {
-      // console.log('LEFT')
       currentPosition--
     } else if (key === spaceBar) {
       moveLaser()
-
     }
-    // console.log('remainder from currentPosition % width', currentPosition % width)
 
     addPlayer(currentPosition)
   }
@@ -111,28 +102,21 @@ function init() {
 
   function addLaser(position) {
     cells[position].classList.add('laser')
-    // console.log('add laser ', position)
   }
 
   function removeLaser(position) {
     cells[position].classList.remove('laser')
-    // console.log('remove laser', position)
   }
 
 
   function moveLaser() {
-    // console.log("moveLaser function")
     let positionLaser = currentPosition
-
     playLaser()
     const laserTimer = setInterval(() => {
-      // console.log('position laser ', positionLaser)
       removeLaser(positionLaser)
 
       if (positionLaser - width >= 0) {
-
         positionLaser -= 10
-
         addLaser(positionLaser)
 
         if (cells[positionLaser].classList.contains('invader')) {
@@ -149,13 +133,8 @@ function init() {
             if (killInvader !== -1 && !killInvadersArray.includes(killInvader)) {
               killInvadersArray.push(killInvader)
             }
-
-            console.log('first one', killInvadersArray)
             score += 100
             scoreDisplay.innerHTML = score + 100
-            // console.log(killInvadersArray)
-            // console.log(score)
-
             gameWon()
           }, 80)
           clearInterval(laserTimer)
@@ -165,7 +144,6 @@ function init() {
       }
     }, 100)
   }
-
 
 
   // ***************** INVADERS *********************  
@@ -179,8 +157,6 @@ function init() {
       if (!killInvadersArray.includes(i)) {
         cells[invadersArray[i]].classList.add('invader')
       }
-      // console.log(invadersArray[i]) // INVADERS ARRAY
-
     }
   }
 
@@ -192,7 +168,6 @@ function init() {
       cells[invadersArray[i]].classList.remove('invader')
     }
   }
-
 
 
   // * Move Invaders function
@@ -218,17 +193,11 @@ function init() {
         }
       }
       for (let i = 0; i < invadersArray.length; i++) {
-        // if (invadersArray[i] % width !== 0) {
         invadersArray[i] += checkDirection
-        // }
       }
-      // console.log(invadersArray
-      // console.log('current position ', currentPosition)
-      // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
       gameOver()
-    }, 100000) //rimetti su 800
-
+    }, 500)
   }
   moveInvaders()
 
@@ -236,9 +205,7 @@ function init() {
   // ************ GAME WON ***********
 
   function gameWon() {
-    // console.log(killInvadersArray.length, invadersArray.length)
     if (killInvadersArray.length === invadersArray.length) {
-      // scoreDisplay.innerHTML = 'YOU WIN!' // da mettere dopo
       alert(`YOU WON, YOUR SCORE IS ${score}`)
       clearInterval(invaderTimer)
       window.location.reload()
@@ -250,8 +217,7 @@ function init() {
 
   function gameOver() {
     if (invadersArray.some((invader) => invader >= cells.length - width)) {
-      // scoreDisplay.innerHTML = 'GAME OVER. With Great power comes great electricity bill'
-      alert('GAME OVER. With Great power comes great electricity bill')
+      alert('GAME OVER')
       clearInterval(invaderTimer)
       window.location.reload()
     }
@@ -266,16 +232,13 @@ function init() {
   }
 
 
-  // ! EVENTS
+  // !============ EVENTS =============
+
+
   document.addEventListener('keydown', movePlayer)
-
-
   window.addEventListener('load', playLaser)
 
 
 }
-
-
-
 
 window.addEventListener('DOMContentLoaded', init)
