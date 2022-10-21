@@ -259,13 +259,13 @@ function init() {
     }
   }
 
-  function playAudio() {
-    console.log(audio)
-    audio.src = './audio/AMVarosio_gameStart1.mp3'
-    // audio.muted = true
-    audio.volume = 0.2
-    audio.play()
-  }
+  // function playAudio() {
+  //   console.log(audio)
+  //   audio.src = './audio/AMVarosio_gameStart1.mp3'
+  //   // audio.muted = true
+  //   audio.volume = 0.2
+  //   audio.play()
+  // }
 
 
 
