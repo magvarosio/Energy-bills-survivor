@@ -33,6 +33,7 @@ h1 {
 h2 {
   background-color: blue;
   border-radius: 25px;
+  padding: 10px 20px;
 }
 
 body {
@@ -145,7 +146,7 @@ span#score {
 /* *************= PLAYER =************ */
 
 .grid div.player {
-  background-image: url('../assets/shooter.png');
+  background-image: url('../assets/monitorface_preview.gif');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
