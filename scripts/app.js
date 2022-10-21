@@ -7,8 +7,10 @@ function init() {
 
   const grid = document.querySelector('.grid')
   const scoreDisplay = document.querySelector('#score')
-  const audioPlayer = document.querySelector('audio')
-  // const playAgain = document.querySelector('h2')
+  // const audio = document.querySelector('#bg-music')
+  const laserSound = document.querySelector('#laserSound')
+
+
 
   // ************= VARIABLES =**********
 
@@ -123,7 +125,8 @@ function init() {
     // console.log("moveLaser function")
     let positionLaser = currentPosition
 
-    // console.log('SPARA!')
+    console.log('SPARA!')
+    playLaser()
     const laserTimer = setInterval(() => {
       // console.log('position laser ', positionLaser)
       removeLaser(positionLaser)
@@ -256,18 +259,36 @@ function init() {
     }
   }
 
-  // function playAudioStart() {
-  //   audio.src = './audio/blabla.wav'
-  //   audio.play()
-  // }
+  function playAudio() {
+    console.log(audio)
+    audio.src = './audio/AMVarosio_gameStart1.mp3'
+    // audio.muted = true
+    audio.volume = 0.2
+    audio.play()
+  }
 
-  // playAudioStart()
+
+
+  function playLaser() {
+    laserSound.play()
+    laserSound.volume = 0.05
+  }
+
+
+
 
 
 
   // ! EVENTS
   document.addEventListener('keydown', movePlayer)
 
+
+  window.addEventListener('load', playLaser)
+
+
 }
+
+
+
 
 window.addEventListener('DOMContentLoaded', init)
