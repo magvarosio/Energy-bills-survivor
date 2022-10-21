@@ -6,10 +6,13 @@ function init() {
   // * element
 
   const grid = document.querySelector('.grid')
-  // console.log(grid)
+  const scoreDisplay = document.querySelector('#score')
+  const audioPlayer = document.querySelector('audio')
+  // const playAgain = document.querySelector('h2')
 
   // ************= VARIABLES =**********
-  const scoreDisplay = document.querySelector('#score')
+
+
   let score = 0
 
 
@@ -181,7 +184,6 @@ function init() {
   }
 
 
-
   // * Remove Invaders function
 
   function removeInvaders() {
@@ -224,15 +226,13 @@ function init() {
       // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
       gameOver()
-
-    }, 800)
+    }, 100000) //rimetti su 800
 
   }
   moveInvaders()
 
 
-  // **** GAME WON ** 
-
+  // ************ GAME WON ***********
 
   function gameWon() {
     console.log(killInvadersArray.length, invadersArray.length)
@@ -245,16 +245,23 @@ function init() {
   }
 
 
-  // **** GAME OVER ** 
+  // *********** GAME OVER *********** 
 
   function gameOver() {
     if (invadersArray.some((invader) => invader >= cells.length - width)) {
-      // scoreDisplay.innerHTML = 'GAME OVER'
-      alert('GAME OVER')
+      // scoreDisplay.innerHTML = 'GAME OVER. With Great power comes great electricity bill'
+      alert('GAME OVER. With Great power comes great electricity bill')
       clearInterval(invaderTimer)
       window.location.reload()
     }
   }
+
+  // function playAudioStart() {
+  //   audio.src = './audio/blabla.wav'
+  //   audio.play()
+  // }
+
+  // playAudioStart()
 
 
 

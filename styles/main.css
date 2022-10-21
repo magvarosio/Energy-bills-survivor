@@ -3,17 +3,36 @@
   font-family: 'Silkscreen', cursive;
 }
 
-/* main {
-  background-color: rgba(0, 0, 0, 0.2);
-  background-image: url('/assets/b-background.png');
+
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background-image: url(../assets/divTitle.png);
+  background-position: center;
   background-size: cover;
-  background-position-x: center;
-  background-position-y: center;
-} */
+  background-repeat: no-repeat;
+  padding: 20px 0px 0px 0px;
+  align-items: center;
+}
+
+.titleInvader {
+  width: 200px;
+}
+
 
 h1 {
+  margin: 0;
   text-align: center;
   font-size: 50px;
+  color: white;
+}
+
+
+h2 {
+  background-color: blue;
+  border-radius: 25px;
 }
 
 body {
@@ -23,25 +42,26 @@ body {
 
 
 .game-wrapper {
-  /* height: calc(100vh - 61px);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../assets/a-background.png);
+  /* 61px */
+  height: calc(100vh - 160px);
+  background-image: url(../assets/bg_retrofuturisticLondon.jpg);
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat; */
-  /* color: #fff; */
+  background-repeat: no-repeat;
+  color: #fff;
   text-align: center;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding-top: 70px;
-  padding-bottom: 150px;
+  padding-top: 0px;
+  padding-bottom: 10px;
 }
 
 
 /* ******== RIGHT AND LEFT PANEL ==*************** */
 
 .right-panel {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgba(0, 65, 244, 0.2);
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -66,7 +86,7 @@ body {
 
 /*************== PLAY and SCORE ==*************/
 
-.play-button {
+.box {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   width: 150px;
   text-align: center;
@@ -78,11 +98,13 @@ body {
   width: 150px;
   height: 200px;
   text-align: center;
+  color: white;
 }
 
 
 span#score {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
   width: 50px;
   font-size: 30px;
 
@@ -114,7 +136,7 @@ span#score {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
   flex-grow: 1;
   height: 10%;
   width: 10%;
@@ -133,7 +155,7 @@ span#score {
 
 
 .grid div.invader {
-  background-image: url('../assets/invaders.png');
+  background-image: url('../assets/bulb.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -142,7 +164,7 @@ span#score {
 /* *************= LASER =************ */
 
 .grid div.laser {
-  background-image: url('../assets/Laser.png');
+  background-image: url('../assets/laserGame.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -151,7 +173,7 @@ span#score {
 /* *************= EXPLOSION =************ */
 
 .grid div.explosion {
-  background-image: url('../assets/explosion.png');
+  background-image: url('../assets/provaExplosion.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
