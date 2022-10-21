@@ -62,7 +62,7 @@ body {
 /* ******== RIGHT AND LEFT PANEL ==*************** */
 
 .right-panel {
-  box-shadow: 0 0 20px 0 rgba(0, 65, 244, 0.2);
+  /* box-shadow: 0 0 20px 0 rgba(0, 65, 244, 0.2); */
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -74,7 +74,7 @@ body {
 }
 
 .left-panel {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -88,14 +88,14 @@ body {
 /*************== PLAY and SCORE ==*************/
 
 .box {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
   width: 150px;
   text-align: center;
 }
 
 
 .score-wrap {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.9);
   width: 150px;
   height: 200px;
   text-align: center;
@@ -127,7 +127,7 @@ span#score {
 
 .grid {
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
   display: flex;
   flex-wrap: wrap;
   height: 100%;
