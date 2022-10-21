@@ -7,7 +7,6 @@ function init() {
 
   const grid = document.querySelector('.grid')
   const scoreDisplay = document.querySelector('#score')
-  // const audio = document.querySelector('#bg-music')
   const laserSound = document.querySelector('#laserSound')
 
 
@@ -125,7 +124,6 @@ function init() {
     // console.log("moveLaser function")
     let positionLaser = currentPosition
 
-    console.log('SPARA!')
     playLaser()
     const laserTimer = setInterval(() => {
       // console.log('position laser ', positionLaser)
@@ -156,7 +154,7 @@ function init() {
             score += 100
             scoreDisplay.innerHTML = score + 100
             // console.log(killInvadersArray)
-            console.log(score)
+            // console.log(score)
 
             gameWon()
           }, 80)
@@ -224,7 +222,7 @@ function init() {
         invadersArray[i] += checkDirection
         // }
       }
-      // console.log(invadersArray) // ! UTILE PER CHECK INVADERS ARRAY
+      // console.log(invadersArray
       // console.log('current position ', currentPosition)
       // console.log('current position invaders ', currentPositionInvaders)
       addInvaders()
@@ -238,7 +236,7 @@ function init() {
   // ************ GAME WON ***********
 
   function gameWon() {
-    console.log(killInvadersArray.length, invadersArray.length)
+    // console.log(killInvadersArray.length, invadersArray.length)
     if (killInvadersArray.length === invadersArray.length) {
       // scoreDisplay.innerHTML = 'YOU WIN!' // da mettere dopo
       alert(`YOU WON, YOUR SCORE IS ${score}`)
@@ -259,24 +257,13 @@ function init() {
     }
   }
 
-  // function playAudio() {
-  //   console.log(audio)
-  //   audio.src = './audio/AMVarosio_gameStart1.mp3'
-  //   // audio.muted = true
-  //   audio.volume = 0.2
-  //   audio.play()
-  // }
 
-
+  // ********* SOUND *******
 
   function playLaser() {
     laserSound.play()
     laserSound.volume = 0.05
   }
-
-
-
-
 
 
   // ! EVENTS
