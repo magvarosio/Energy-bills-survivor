@@ -59,7 +59,7 @@ I also planned the work with a roadmap on Notion, setting the Priorities and wri
 
 I followed my roadmap to build the code. I did the set-up grid that allowed me to build the game and then I started working on the three main elements: Player, Laser and Invaders. 
 
-This is the grid setup. I used a ‘for loop’ to create the grid <div> in HTML. 
+This is the grid setup. I used a ‘for loop’ to create the grid `<div>` in HTML. 
 
 ![Screenshot 2023-01-17 at 14 00 35](https://user-images.githubusercontent.com/112773333/212918296-17bfe653-a43c-48b5-8652-8e5a16b7b2a9.png)
 
