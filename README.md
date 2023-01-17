@@ -20,7 +20,7 @@
 
 ## Deployment
 
-#### Please follow this link to play my game: https://magvarosio.github.io/project-space-invaders/
+#### Please follow this link to play my game: https://magvarosio.github.io/Energy-bills-survivor/
 
 #### Repository link: https://github.com/magvarosio/energy-bills-survivor
 
