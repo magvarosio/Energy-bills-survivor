@@ -97,7 +97,6 @@ I feel I have strengthened the concepts we learnt in the past three weeks, impro
 
 ## Author
 
-- LinkedIn - [Margherita (Mag) Varosio](https://www.linkedin.com/in/margherita-varosio/)
-- Email - margherita.varosio@gmail.com
+- Email - amvarosio8@gmail.com
 
 [Back to the top ⬆️](#idtext)
